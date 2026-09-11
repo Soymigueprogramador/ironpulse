@@ -10,8 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "framer-motion": "^13.2.0",
+    "lucide-react": "^1.45.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-hook-form": "^7.88.0",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.6.2"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
