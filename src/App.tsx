@@ -1,9 +1,19 @@
+import Container from "./components/common/Container"
+import SectionTitle from "./components/common/SectionTitle"
+import PageSection from "./components/layout/PageSection"
+
 function App() {
   return (
-    <main className="min-h-screen bg-slate-950 flex items-center justify-center">
-      <h1 className="text-5xl font-bold text-violet-500">
-        IRONPULSE
-      </h1>
+    <main>
+      <PageSection>
+        <Container>
+          <SectionTitle
+            eyebrow="IRONPULSE"
+            title="Entrená más fuerte. Viví mejor."
+            description="Una experiencia de entrenamiento diseñada para ayudarte a alcanzar tus objetivos."
+          />
+        </Container>
+      </PageSection>
     </main>
   )
 }

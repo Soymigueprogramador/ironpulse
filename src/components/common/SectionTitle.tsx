@@ -1,50 +1,39 @@
-interface SectionTitleProps {
-    eyebrow: string
+import type { ReactNode } from "react"
 
-    title: string
-    description?: string // La descripcion no es obligatoria
+interface SectionTitleProps {
+  title: string
+  description?: string
+  eyebrow?: string
+  children?: ReactNode
 }
 
-function SectionTitle({ eyebrow, title, description, }: SectionTitleProps) {
-    return (
-        <div className="max-w-3xl">
-            <span className="text-sm font-semibold uppercase tracking-widest text-violet-500">
-                {
-                    eyebrow
-                }
-            </span>
+function SectionTitle({
+  title,
+  description,
+  eyebrow,
+  children,
+}: SectionTitleProps) {
+  return (
+    <div className="mb-12 max-w-3xl">
+      {eyebrow && (
+        <span className="mb-3 block text-sm font-semibold uppercase tracking-widest text-violet-500">
+          {eyebrow}
+        </span>
+      )}
 
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                {
-                    title
-                }
-            </h2>
+      <h2 className="text-white">
+        {title}
+      </h2>
 
-            {
-                description && (
-                    <p className="mt-4 text-base leading-7 text-slate-400 sm:text-lg">
-                        {
-                            description
-                        }
-                    </p>
-                )
-            }
-        </div>
-    )
+      {description && (
+        <p className="mt-4 text-slate-400">
+          {description}
+        </p>
+      )}
+
+      {children}
+    </div>
+  )
 }
 
 export default SectionTitle
-
-// Formas de usar el componente:
-/*
-    <SectionTitle
-        eyebrow="Entrenamiento"
-        title="Entrená más fuerte"
-    />
-    
-    <SectionTitle
-        eyebrow="Entrenamiento"
-        title="Entrená más fuerte"
-        description="Programas diseñados para ayudarte a alcanzar tus objetivos."
-    />
-*/
