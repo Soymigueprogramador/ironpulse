@@ -1,8 +1,15 @@
-import { Activity, Dumbbell, HeartPulse, PersonStanding, Target, Zap } from "lucide-react"
-import Container from "../common/Container"
-import SectionTitle from "../common/SectionTitle"
-import PageSection from "../layout/PageSection"
-import { services } from "../../data/services"
+import {
+  Activity,
+  Dumbbell,
+  HeartPulse,
+  PersonStanding,
+  Target,
+  Zap,
+} from "lucide-react";
+import Container from "../common/Container";
+import SectionTitle from "../common/SectionTitle";
+import PageSection from "../layout/PageSection";
+import { services } from "../../data/services";
 
 const service_icons = [
   Dumbbell,
@@ -11,7 +18,7 @@ const service_icons = [
   Zap,
   HeartPulse,
   PersonStanding,
-]
+];
 
 function Services() {
   return (
@@ -25,7 +32,7 @@ function Services() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
-            const Icon = service_icons[index % service_icons.length]
+            const Icon = service_icons[index % service_icons.length];
 
             return (
               <article
@@ -36,20 +43,16 @@ function Services() {
                   <Icon size={24} />
                 </div>
 
-                <h3 className="text-white">
-                  {service.name}
-                </h3>
+                <h3 className="text-white">{service.name}</h3>
 
-                <p className="mt-3 text-slate-400">
-                  {service.description}
-                </p>
+                <p className="mt-3 text-slate-400">{service.description}</p>
               </article>
-            )
+            );
           })}
         </div>
       </Container>
     </PageSection>
-  )
+  );
 }
 
-export default Services
+export default Services;

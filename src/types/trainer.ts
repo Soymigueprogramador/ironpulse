@@ -4,4 +4,5 @@ export interface Trainer {
     specialty: string
     image: string
     bio: string
+    speciality?: string
 }

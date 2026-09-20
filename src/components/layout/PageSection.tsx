@@ -1,13 +1,19 @@
-import type { ReactNode } from "react"
+import type { ComponentPropsWithoutRef } from "react"
 
-interface PageSectionProps {
-  children: ReactNode
-  className?: string
+interface PageSectionProps extends ComponentPropsWithoutRef<"section"> {
+  children: React.ReactNode
 }
 
-function PageSection({ children, className = "" }: PageSectionProps) {
+function PageSection({
+  children,
+  className = "",
+  ...props
+}: PageSectionProps) {
   return (
-    <section className={`py-24 ${className}`}>
+    <section
+      className={`py-24 ${className}`}
+      {...props}
+    >
       {children}
     </section>
   )

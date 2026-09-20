@@ -6,4 +6,5 @@ export interface Plan {
     features: string[]
     // Lo usamos para destacar un plan..
     highlighted: boolean
+    description?: string
 }

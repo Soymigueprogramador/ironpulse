@@ -1,13 +1,13 @@
-import { useState } from "react"
-import Container from "../common/Container"
-import Button from "../common/Button"
+import { useState } from "react";
+import Container from "../common/Container";
+import Button from "../common/Button";
 
 function Header() {
-  const [menu_open, set_menu_open] = useState(false)
+  const [menu_open, set_menu_open] = useState(false);
 
   const close_menu = () => {
-    set_menu_open(false)
-  }
+    set_menu_open(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/95 backdrop-blur">
@@ -50,9 +50,7 @@ function Header() {
               Horarios
             </a>
 
-            <Button>
-              Comenzar ahora
-            </Button>
+            <Button>Comenzar ahora</Button>
           </nav>
 
           <button
@@ -101,15 +99,13 @@ function Header() {
                 Horarios
               </a>
 
-              <Button>
-                Comenzar ahora
-              </Button>
+              <Button>Comenzar ahora</Button>
             </div>
           </nav>
         )}
       </Container>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

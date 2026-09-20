@@ -4,4 +4,5 @@ export interface Testimonial {
     text: string
     rating: number
     image: string
+    comment?: string
 }
