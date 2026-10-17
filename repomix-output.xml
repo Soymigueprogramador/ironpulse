@@ -1,0 +1,1616 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+.oxlintrc.json
+index.html
+package.json
+public/favicon.svg
+public/icons.svg
+README.md
+src/App.tsx
+src/components/common/Button.tsx
+src/components/common/Container.tsx
+src/components/common/SectionTitle.tsx
+src/components/common/ServiceCard.tsx
+src/components/layout/Footer.tsx
+src/components/layout/Header.tsx
+src/components/layout/PageSection.tsx
+src/components/sections/About.tsx
+src/components/sections/Hero.tsx
+src/components/sections/Plans.tsx
+src/components/sections/Schedule.tsx
+src/components/sections/Service.tsx
+src/components/sections/Stats.tsx
+src/components/sections/Testimonials.tsx
+src/components/sections/Trainers.tsx
+src/data/plans.ts
+src/data/schedule.ts
+src/data/services.ts
+src/data/stats.ts
+src/data/testimonials.ts
+src/data/trainers.ts
+src/index.css
+src/main.tsx
+src/types/plan.ts
+src/types/schedule.ts
+src/types/service.ts
+src/types/Stat.ts
+src/types/testimonial.ts
+src/types/trainer.ts
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="src/components/sections/About.tsx">
+import { Dumbbell, HeartPulse, Trophy } from "lucide-react"
+import { motion } from "framer-motion"
+import Container from "../common/Container"
+import SectionTitle from "../common/SectionTitle"
+import PageSection from "../layout/PageSection"
+
+const about_items = [
+  {
+    id: "history",
+    icon: Trophy,
+    title: "Nuestra historia",
+    description:
+      "IRONPULSE nació con la idea de crear un espacio donde el entrenamiento y la constancia se conviertan en parte de un estilo de vida.",
+  },
+  {
+    id: "philosophy",
+    icon: HeartPulse,
+    title: "Nuestra filosofía",
+    description:
+      "Creemos en el progreso constante, el acompañamiento y el entrenamiento adaptado a los objetivos de cada persona.",
+  },
+  {
+    id: "facilities",
+    icon: Dumbbell,
+    title: "Nuestras instalaciones",
+    description:
+      "Contamos con un espacio equipado para que puedas entrenar cómodamente, desarrollar tu potencial y disfrutar cada sesión.",
+  },
+]
+
+function About() {
+  return (
+    <PageSection id="nosotros" className="bg-slate-900/30">
+      <Container>
+        <SectionTitle
+          eyebrow="Nosotros"
+          title="Entrená en un lugar pensado para vos"
+          description="En IRONPULSE combinamos entrenamiento, acompañamiento y un espacio preparado para ayudarte a alcanzar tus objetivos."
+        />
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {about_items.map((item, index) => {
+            const Icon = item.icon
+
+            return (
+              <motion.article
+                key={item.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.12,
+                  ease: "easeOut",
+                }}
+                className="rounded-xl border border-slate-800 bg-slate-950 p-6 transition-colors duration-300 hover:border-violet-500/50 sm:p-8"
+              >
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-violet-500/10 text-violet-500">
+                  <Icon size={24} strokeWidth={2} />
+                </div>
+
+                <h3 className="text-white">{item.title}</h3>
+
+                <p className="mt-4 text-slate-400">{item.description}</p>
+              </motion.article>
+            )
+          })}
+        </div>
+      </Container>
+    </PageSection>
+  )
+}
+
+export default About
+</file>
+
+<file path="src/components/sections/Stats.tsx">
+import { motion } from "framer-motion";
+import Container from "../common/Container";
+import PageSection from "../layout/PageSection";
+import { stats } from "../../data/stats";
+
+function Stats() {
+  return (
+    <PageSection>
+      <Container>
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-slate-800 bg-slate-800 lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: "easeOut",
+              }}
+              className="bg-slate-950 px-4 py-8 text-center sm:px-6 sm:py-10"
+            >
+              <span className="block text-3xl font-bold text-violet-500 sm:text-4xl lg:text-5xl">
+                {stat.value}
+              </span>
+
+              <span className="mt-2 block text-sm text-slate-400 sm:text-base">
+                {stat.label}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
+    </PageSection>
+  );
+}
+
+export default Stats;
+</file>
+
+<file path="src/data/stats.ts">
+import type { Stat } from "../types/Stat";
+
+export const stats: Stat[] = [
+  {
+    id: "members",
+    value: "+500",
+    label: "Socios activos",
+  },
+  {
+    id: "experience",
+    value: "+10",
+    label: "Años de experiencia",
+  },
+  {
+    id: "classes",
+    value: "20+",
+    label: "Clases semanales",
+  },
+  {
+    id: "days",
+    value: "6",
+    label: "Días por semana",
+  },
+];
+</file>
+
+<file path="src/types/Stat.ts">
+export interface Stat {
+  id: string
+  value: string
+  label: string
+}
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path=".oxlintrc.json">
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+  }
+}
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ironpulse</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="public/favicon.svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="46" fill="none" viewBox="0 0 48 46"><path fill="#863bff" d="M25.946 44.938c-.664.845-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.287c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.497 0-3.578-1.842-3.578H1.237c-.92 0-1.456-1.04-.92-1.788L10.013.474c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.579 1.842 3.579h11.377c.943 0 1.473 1.088.89 1.83L25.947 44.94z" style="fill:#863bff;fill:color(display-p3 .5252 .23 1);fill-opacity:1"/><mask id="a" width="48" height="46" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M25.842 44.938c-.664.844-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.183c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.498 0-3.579-1.842-3.579H1.133c-.92 0-1.456-1.04-.92-1.787L9.91.473c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.578 1.842 3.578h11.377c.943 0 1.473 1.088.89 1.832L25.843 44.94z" style="fill:#000;fill-opacity:1"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#ede6ff" rx="5.508" ry="14.704" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -4.47 31.516)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#ede6ff" rx="10.399" ry="29.851" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -39.328 7.883)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#7e14ff" rx="5.508" ry="30.487" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.814 -25.913 -14.639)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#7e14ff" rx="5.508" ry="30.599" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.814 -32.644 -3.334)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#7e14ff" rx="5.508" ry="30.599" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -34.34 30.47)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#ede6ff" rx="14.072" ry="22.078" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="rotate(93.35 24.506 48.493)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#7e14ff" rx="3.47" ry="21.501" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.009 28.708 47.59)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#7e14ff" rx="3.47" ry="21.501" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.009 28.708 47.59)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx=".387" cy="8.972" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(39.51 .387 8.972)"/></g><g filter="url(#k)"><ellipse cx="47.523" cy="-6.092" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 47.523 -6.092)"/></g><g filter="url(#l)"><ellipse cx="41.412" cy="6.333" fill="#47bfff" rx="5.971" ry="9.665" style="fill:#47bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1" transform="rotate(37.892 41.412 6.333)"/></g><g filter="url(#m)"><ellipse cx="-1.879" cy="38.332" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 -1.88 38.332)"/></g><g filter="url(#n)"><ellipse cx="-1.879" cy="38.332" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 -1.88 38.332)"/></g><g filter="url(#o)"><ellipse cx="35.651" cy="29.907" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 35.651 29.907)"/></g><g filter="url(#p)"><ellipse cx="38.418" cy="32.4" fill="#47bfff" rx="5.971" ry="15.297" style="fill:#47bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1" transform="rotate(37.892 38.418 32.4)"/></g></g><defs><filter id="b" width="60.045" height="41.654" x="-19.77" y="16.149" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-54.613" y="-7.533" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-49.64" y="2.03" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-45.045" y="20.029" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-43.513" y="21.178" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="15.756" y="-17.901" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="23.548" y="2.284" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="23.548" y="2.284" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-27.636" y="-22.853" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="20.116" y="-38.415" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="24.641" y="-11.323" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-29.286" y="6.009" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-29.286" y="6.009" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="8.244" y="-2.416" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="18.713" y="10.588" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter></defs></svg>
+</file>
+
+<file path="public/icons.svg">
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="bluesky-icon" viewBox="0 0 16 17">
+    <g clip-path="url(#bluesky-clip)"><path fill="#08060d" d="M7.75 7.735c-.693-1.348-2.58-3.86-4.334-5.097-1.68-1.187-2.32-.981-2.74-.79C.188 2.065.1 2.812.1 3.251s.241 3.602.398 4.13c.52 1.744 2.367 2.333 4.07 2.145-2.495.37-4.71 1.278-1.805 4.512 3.196 3.309 4.38-.71 4.987-2.746.608 2.036 1.307 5.91 4.93 2.746 2.72-2.746.747-4.143-1.747-4.512 1.702.189 3.55-.4 4.07-2.145.156-.528.397-3.691.397-4.13s-.088-1.186-.575-1.406c-.42-.19-1.06-.395-2.741.79-1.755 1.24-3.64 3.752-4.334 5.099"/></g>
+    <defs><clipPath id="bluesky-clip"><path fill="#fff" d="M.1.85h15.3v15.3H.1z"/></clipPath></defs>
+  </symbol>
+  <symbol id="discord-icon" viewBox="0 0 20 19">
+    <path fill="#08060d" d="M16.224 3.768a14.5 14.5 0 0 0-3.67-1.153c-.158.286-.343.67-.47.976a13.5 13.5 0 0 0-4.067 0c-.128-.306-.317-.69-.476-.976A14.4 14.4 0 0 0 3.868 3.77C1.546 7.28.916 10.703 1.231 14.077a14.7 14.7 0 0 0 4.5 2.306q.545-.748.965-1.587a9.5 9.5 0 0 1-1.518-.74q.191-.14.372-.293c2.927 1.369 6.107 1.369 8.999 0q.183.152.372.294-.723.437-1.52.74.418.838.963 1.588a14.6 14.6 0 0 0 4.504-2.308c.37-3.911-.63-7.302-2.644-10.309m-9.13 8.234c-.878 0-1.599-.82-1.599-1.82 0-.998.705-1.82 1.6-1.82.894 0 1.614.82 1.599 1.82.001 1-.705 1.82-1.6 1.82m5.91 0c-.878 0-1.599-.82-1.599-1.82 0-.998.705-1.82 1.6-1.82.893 0 1.614.82 1.599 1.82 0 1-.706 1.82-1.6 1.82"/>
+  </symbol>
+  <symbol id="documentation-icon" viewBox="0 0 21 20">
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="m15.5 13.333 1.533 1.322c.645.555.967.833.967 1.178s-.322.623-.967 1.179L15.5 18.333m-3.333-5-1.534 1.322c-.644.555-.966.833-.966 1.178s.322.623.966 1.179l1.534 1.321"/>
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M17.167 10.836v-4.32c0-1.41 0-2.117-.224-2.68-.359-.906-1.118-1.621-2.08-1.96-.599-.21-1.349-.21-2.848-.21-2.623 0-3.935 0-4.983.369-1.684.591-3.013 1.842-3.641 3.428C3 6.449 3 7.684 3 10.154v2.122c0 2.558 0 3.838.706 4.726q.306.383.713.671c.76.536 1.79.64 3.581.66"/>
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M3 10a2.78 2.78 0 0 1 2.778-2.778c.555 0 1.209.097 1.748-.047.48-.129.854-.503.982-.982.145-.54.048-1.194.048-1.749a2.78 2.78 0 0 1 2.777-2.777"/>
+  </symbol>
+  <symbol id="github-icon" viewBox="0 0 19 19">
+    <path fill="#08060d" fill-rule="evenodd" d="M9.356 1.85C5.05 1.85 1.57 5.356 1.57 9.694a7.84 7.84 0 0 0 5.324 7.44c.387.079.528-.168.528-.376 0-.182-.013-.805-.013-1.454-2.165.467-2.616-.935-2.616-.935-.349-.91-.864-1.143-.864-1.143-.71-.48.051-.48.051-.48.787.051 1.2.805 1.2.805.695 1.194 1.817.857 2.268.649.064-.507.27-.857.49-1.052-1.728-.182-3.545-.857-3.545-3.87 0-.857.31-1.558.8-2.104-.078-.195-.349-1 .077-2.078 0 0 .657-.208 2.14.805a7.5 7.5 0 0 1 1.946-.26c.657 0 1.328.092 1.946.26 1.483-1.013 2.14-.805 2.14-.805.426 1.078.155 1.883.078 2.078.502.546.799 1.247.799 2.104 0 3.013-1.818 3.675-3.558 3.87.284.247.528.714.528 1.454 0 1.052-.012 1.896-.012 2.156 0 .208.142.455.528.377a7.84 7.84 0 0 0 5.324-7.441c.013-4.338-3.48-7.844-7.773-7.844" clip-rule="evenodd"/>
+  </symbol>
+  <symbol id="social-icon" viewBox="0 0 20 20">
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M12.5 6.667a4.167 4.167 0 1 0-8.334 0 4.167 4.167 0 0 0 8.334 0"/>
+    <path fill="none" stroke="#aa3bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" d="M2.5 16.667a5.833 5.833 0 0 1 8.75-5.053m3.837.474.513 1.035c.07.144.257.282.414.309l.93.155c.596.1.736.536.307.965l-.723.73a.64.64 0 0 0-.152.531l.207.903c.164.715-.213.991-.84.618l-.872-.52a.63.63 0 0 0-.577 0l-.872.52c-.624.373-1.003.094-.84-.618l.207-.903a.64.64 0 0 0-.152-.532l-.723-.729c-.426-.43-.289-.864.306-.964l.93-.156a.64.64 0 0 0 .412-.31l.513-1.034c.28-.562.735-.562 1.012 0"/>
+  </symbol>
+  <symbol id="x-icon" viewBox="0 0 19 19">
+    <path fill="#08060d" fill-rule="evenodd" d="M1.893 1.98c.052.072 1.245 1.769 2.653 3.77l2.892 4.114c.183.261.333.48.333.486s-.068.089-.152.183l-.522.593-.765.867-3.597 4.087c-.375.426-.734.834-.798.905a1 1 0 0 0-.118.148c0 .01.236.017.664.017h.663l.729-.83c.4-.457.796-.906.879-.999a692 692 0 0 0 1.794-2.038c.034-.037.301-.34.594-.675l.551-.624.345-.392a7 7 0 0 1 .34-.374c.006 0 .93 1.306 2.052 2.903l2.084 2.965.045.063h2.275c1.87 0 2.273-.003 2.266-.021-.008-.02-1.098-1.572-3.894-5.547-2.013-2.862-2.28-3.246-2.273-3.266.008-.019.282-.332 2.085-2.38l2-2.274 1.567-1.782c.022-.028-.016-.03-.65-.03h-.674l-.3.342a871 871 0 0 1-1.782 2.025c-.067.075-.405.458-.75.852a100 100 0 0 1-.803.91c-.148.172-.299.344-.99 1.127-.304.343-.32.358-.345.327-.015-.019-.904-1.282-1.976-2.808L6.365 1.85H1.8zm1.782.91 8.078 11.294c.772 1.08 1.413 1.973 1.425 1.984.016.017.241.02 1.05.017l1.03-.004-2.694-3.766L7.796 5.75 5.722 2.852l-1.039-.004-1.039-.004z" clip-rule="evenodd"/>
+  </symbol>
+</svg>
+</file>
+
+<file path="README.md">
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the Oxlint configuration
+
+If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+
+```json
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "options": {
+    "typeAware": true
+  },
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+  }
+}
+```
+
+See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+</file>
+
+<file path="src/components/common/ServiceCard.tsx">
+import type { LucideIcon } from "lucide-react";
+import { motion } from "framer-motion";
+
+interface ServiceCardProps {
+  name: string;
+  description: string;
+  Icon: LucideIcon;
+  index: number;
+}
+
+function ServiceCard({
+  name,
+  description,
+  Icon,
+  index,
+}: ServiceCardProps) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.1,
+      }}
+      className="group rounded-xl border border-slate-800 bg-slate-900/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/50 hover:bg-slate-900"
+    >
+      <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-violet-500/10 text-violet-500 transition-colors duration-300 group-hover:bg-violet-500 group-hover:text-white">
+        <Icon size={24} />
+      </div>
+
+      <h3 className="text-xl font-semibold text-white">{name}</h3>
+
+      <p className="mt-3 leading-relaxed text-slate-400">{description}</p>
+    </motion.article>
+  );
+}
+
+export default ServiceCard;
+</file>
+
+<file path="src/components/layout/Footer.tsx">
+import Container from "../common/Container"
+
+function Footer() {
+  return (
+    <footer className="border-t border-slate-800 bg-slate-950">
+      <Container>
+        <div className="grid gap-10 py-12 md:grid-cols-3">
+          <div>
+            <a
+              href="#inicio"
+              className="text-xl font-bold tracking-tight text-white"
+            >
+              IRON<span className="text-violet-500">PULSE</span>
+            </a>
+
+            <p className="mt-4 max-w-sm text-sm leading-6 text-slate-400">
+              Un espacio diseñado para ayudarte a entrenar más fuerte,
+              superar tus límites y alcanzar tus objetivos.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+              Navegación
+            </h3>
+
+            <nav className="mt-4 flex flex-col gap-3">
+              <a
+                href="#servicios"
+                className="text-sm text-slate-400 transition-colors hover:text-white"
+              >
+                Servicios
+              </a>
+
+              <a
+                href="#planes"
+                className="text-sm text-slate-400 transition-colors hover:text-white"
+              >
+                Planes
+              </a>
+
+              <a
+                href="#entrenadores"
+                className="text-sm text-slate-400 transition-colors hover:text-white"
+              >
+                Entrenadores
+              </a>
+
+              <a
+                href="#horarios"
+                className="text-sm text-slate-400 transition-colors hover:text-white"
+              >
+                Horarios
+              </a>
+            </nav>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+              Contacto
+            </h3>
+
+            <div className="mt-4 flex flex-col gap-3 text-sm text-slate-400">
+              <span>Buenos Aires, Argentina</span>
+              <span>+54 11 1234-5678</span>
+              <span>contacto@ironpulse.com</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-slate-800 py-6">
+          <p className="text-center text-sm text-slate-500">
+            © {new Date().getFullYear()} IRONPULSE. Todos los derechos
+            reservados.
+          </p>
+        </div>
+      </Container>
+    </footer>
+  )
+}
+
+export default Footer
+</file>
+
+<file path="src/components/sections/Plans.tsx">
+import Container from "../common/Container";
+import SectionTitle from "../common/SectionTitle";
+import PageSection from "../layout/PageSection";
+import Button from "../common/Button";
+import { plans } from "../../data/plans";
+
+function Plans() {
+  return (
+    <PageSection id="planes" className="bg-slate-900/30">
+      <Container>
+        <SectionTitle
+          eyebrow="Nuestros planes"
+          title="Elegí el plan que mejor se adapta a vos"
+          description="Opciones flexibles para que puedas entrenar con todo lo que necesitás."
+        />
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {plans.map((plan) => (
+            <article
+              key={plan.id}
+              className="flex flex-col rounded-xl border border-slate-800 bg-slate-950 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/50"
+            >
+              <h3 className="text-white">{plan.name}</h3>
+
+              <p className="mt-3 text-slate-400">{plan.description}</p>
+
+              <div className="mt-6">
+                <span className="text-3xl font-bold text-white">
+                  ${plan.price}
+                </span>
+                <span className="ml-2 text-sm text-slate-500">/ mes</span>
+              </div>
+
+              <ul className="mt-6 flex flex-1 flex-col gap-3">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="text-sm text-slate-300">
+                    ✓ {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <Button className="mt-8 w-full">Elegir plan</Button>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </PageSection>
+  );
+}
+
+export default Plans;
+</file>
+
+<file path="src/components/sections/Schedule.tsx">
+import Container from "../common/Container";
+import SectionTitle from "../common/SectionTitle";
+import PageSection from "../layout/PageSection";
+import { schedule } from "../../data/schedule";
+
+function Schedule() {
+  return (
+    <PageSection id="horarios">
+      <Container>
+        <SectionTitle
+          eyebrow="Horarios"
+          title="Organizá tus entrenamientos"
+          description="Consultá nuestros horarios y encontrá el momento ideal para entrenar."
+        />
+
+        <div className="overflow-hidden rounded-xl border border-slate-800">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[640px] border-collapse">
+              <thead>
+                <tr className="border-b border-slate-800 bg-slate-900">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                    Día
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                    Horario
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                    Actividad
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-white">
+                    Entrenador
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {schedule.map((item) => (
+                  <tr
+                    key={item.id}
+                    className="border-b border-slate-800 last:border-b-0 hover:bg-slate-900/50"
+                  >
+                    <td className="px-6 py-4 text-sm text-slate-300">
+                      {item.day}
+                    </td>
+
+                    <td className="px-6 py-4 text-sm text-slate-300">
+                      {item.time}
+                    </td>
+
+                    <td className="px-6 py-4 text-sm font-medium text-white">
+                      {item.acivitty}
+                    </td>
+
+                    <td className="px-6 py-4 text-sm text-slate-400">
+                      {item.trainer}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </Container>
+    </PageSection>
+  );
+}
+
+export default Schedule;
+</file>
+
+<file path="src/components/sections/Testimonials.tsx">
+import Container from "../common/Container";
+import SectionTitle from "../common/SectionTitle";
+import PageSection from "../layout/PageSection";
+import { testimonials } from "../../data/testimonials";
+
+function Testimonials() {
+  return (
+    <PageSection id="testimonios" className="bg-slate-900/30">
+      <Container>
+        <SectionTitle
+          eyebrow="Experiencias reales"
+          title="Lo que dicen nuestros socios"
+          description="Personas que eligieron IRONPULSE para entrenar, progresar y alcanzar sus objetivos."
+        />
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {testimonials.map((testimonial) => (
+            <article
+              key={testimonial.id}
+              className="rounded-xl border border-slate-800 bg-slate-950 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/50"
+            >
+              <div className="flex gap-1 text-violet-500">
+                {"★".repeat(testimonial.rating)}
+              </div>
+
+              <blockquote className="mt-5 text-slate-300">
+                “{testimonial.comment}”
+              </blockquote>
+
+              <div className="mt-6 border-t border-slate-800 pt-5">
+                <p className="font-semibold text-white">{testimonial.name}</p>
+
+                <p className="mt-1 text-sm text-slate-500">Socio IRONPULSE</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </PageSection>
+  );
+}
+
+export default Testimonials;
+</file>
+
+<file path="src/components/sections/Trainers.tsx">
+import Container from "../common/Container";
+import SectionTitle from "../common/SectionTitle";
+import PageSection from "../layout/PageSection";
+import Button from "../common/Button";
+import { trainers } from "../../data/trainers";
+
+function Trainers() {
+  return (
+    <PageSection id="entrenadores">
+      <Container>
+        <SectionTitle
+          eyebrow="Nuestro equipo"
+          title="Entrenadores que te acompañan en cada paso"
+          description="Profesionales preparados para ayudarte a entrenar de forma segura y alcanzar tus objetivos."
+        />
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {trainers.map((trainer) => (
+            <article
+              key={trainer.id}
+              className="overflow-hidden rounded-xl border border-slate-800 bg-slate-900/50 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/50"
+            >
+              <div className="flex h-64 items-center justify-center bg-slate-800">
+                <span className="text-5xl font-bold text-slate-600">
+                  {trainer.name.charAt(0)}
+                </span>
+              </div>
+
+              <div className="p-6">
+                <h3 className="text-white">{trainer.name}</h3>
+
+                <p className="mt-2 text-sm font-medium text-violet-500">
+                  {trainer.speciality}
+                </p>
+
+                <p className="mt-3 text-slate-400">{trainer.bio}</p>
+
+                <Button variant="secondary" className="mt-6 w-full">
+                  Ver perfil
+                </Button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </PageSection>
+  );
+}
+
+export default Trainers;
+</file>
+
+<file path="src/data/plans.ts">
+import type { Plan } from "../types/plan";
+
+export const plans: Plan[] = [
+    {
+    id: "basico",
+    name: "Básico",
+    price: 25000,
+    features: [
+      "Acceso al área de musculación",
+      "Acceso de lunes a viernes",
+    ],
+    highlighted: false,
+  },
+  {
+    id: "pro",
+    name: "Pro",
+    price: 35000,
+    features: [
+      "Acceso ilimitado",
+      "Todas las áreas del gimnasio",
+      "Clases grupales",
+    ],
+    highlighted: true,
+  },
+  {
+    id: "premium",
+    name: "Premium",
+    price: 45000,
+    features: [
+      "Acceso ilimitado",
+      "Todas las áreas del gimnasio",
+      "Clases grupales",
+      "Seguimiento personalizado",
+    ],
+    highlighted: false,
+  },
+]
+</file>
+
+<file path="src/data/testimonials.ts">
+import type { Testimonial } from "../types/testimonial";
+
+export const testimonials: Testimonial[] = [
+    {
+    id: "martin-perez",
+    name: "Martín Pérez",
+    text: "Un lugar excelente para entrenar. El ambiente y la atención hacen que tengas ganas de volver.",
+    rating: 5,
+    image: "/images/testimonial-martin.jpg",
+  },
+  {
+    id: "carolina-lopez",
+    name: "Carolina López",
+    text: "Los entrenadores están muy atentos y las instalaciones tienen todo lo necesario para entrenar.",
+    rating: 5,
+    image: "/images/testimonial-carolina.jpg",
+  },
+  {
+    id: "facundo-diaz",
+    name: "Facundo Díaz",
+    text: "Me ayudaron a organizar mi entrenamiento y pude mantener una rutina constante.",
+    rating: 4,
+    image: "/images/testimonial-facundo.jpg",
+  },
+]
+</file>
+
+<file path="src/data/trainers.ts">
+import type { Trainer } from "../types/trainer";
+
+export const trainers: Trainer[] = [
+  {
+    id: "lucas-martinez",
+    name: "Lucas Martínez",
+    specialty: "Fuerza y musculación",
+    image: "/images/trainer-lucas.jpg",
+    bio: "Especialista en entrenamiento de fuerza y desarrollo muscular.",
+  },
+  {
+    id: "sofia-rodriguez",
+    name: "Sofía Rodríguez",
+    specialty: "Entrenamiento funcional",
+    image: "/images/trainer-sofia.jpg",
+    bio: "Entrenadora especializada en movilidad, resistencia y entrenamiento funcional.",
+  },
+  {
+    id: "matias-gomez",
+    name: "Matías Gómez",
+    specialty: "Preparación física",
+    image: "/images/trainer-matias.jpg",
+    bio: "Especialista en acondicionamiento físico y mejora del rendimiento.",
+  },
+]
+</file>
+
+<file path="src/main.tsx">
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+</file>
+
+<file path="src/types/service.ts">
+export interface Service {
+    id: string
+    name: string
+    description: string
+    icon: string
+}
+</file>
+
+<file path="tsconfig.app.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "es2023",
+    "lib": ["ES2023", "DOM"],
+    "module": "esnext",
+    "types": ["vite/client"],
+    "allowArbitraryExtensions": true,
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
+</file>
+
+<file path="tsconfig.json">
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}
+</file>
+
+<file path="tsconfig.node.json">
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "target": "es2023",
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "module": "nodenext",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["vite.config.ts"]
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "ironpulse",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "framer-motion": "^13.2.0",
+    "lucide-react": "^1.45.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-hook-form": "^7.88.0",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}
+</file>
+
+<file path="src/components/common/Button.tsx">
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+
+// Define las propiedades que puede recibir nuestro componente Button.
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  // Contenido que aparecerá dentro del botón.
+  children: ReactNode;
+
+  // Define el estilo visual del botón.
+  variant?: "primary" | "secondary";
+
+  // Permite utilizar el componente como enlace.
+  href?: string;
+}
+
+function Button({
+  children,
+  variant = "primary",
+  className = "",
+  href,
+  // Permite que nuestro componente siga aceptando las propiedades de un botón HTML normal.
+  ...props
+}: ButtonProps) {
+  // Clases CSS compartidas por ambas variantes.
+  const base_classes =
+    "inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-colors";
+
+  // Clases CSS específicas según la variante elegida.
+  const variant_classes =
+    variant === "primary"
+      ? "bg-violet-600 text-white hover:bg-violet-500"
+      : "border border-slate-700 text-white hover:bg-slate-800";
+
+  // Une todas las clases CSS del componente.
+  const button_classes = `${base_classes} ${variant_classes} ${className}`;
+
+  // Si existe href, renderizamos un enlace.
+  if (href) {
+    return (
+      <a href={href} className={button_classes}>
+        {children}
+      </a>
+    );
+  }
+
+  // Si no existe href, mantenemos el comportamiento original de botón.
+  return (
+    <button className={button_classes} {...props}>
+      {children}
+    </button>
+  );
+}
+
+export default Button;
+</file>
+
+<file path="src/components/common/Container.tsx">
+import type { ReactNode } from "react"
+
+interface ContainerProps {
+  children: ReactNode
+  className?: string
+}
+
+function Container({ children, className = "" }: ContainerProps) {
+  return (
+    <div className={`mx-auto w-full max-w-7xl px-6 lg:px-8 ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+export default Container
+</file>
+
+<file path="src/components/common/SectionTitle.tsx">
+import type { ReactNode } from "react"
+
+interface SectionTitleProps {
+  title: string
+  description?: string
+  eyebrow?: string
+  children?: ReactNode
+}
+
+function SectionTitle({
+  title,
+  description,
+  eyebrow,
+  children,
+}: SectionTitleProps) {
+  return (
+    <div className="mb-12 max-w-3xl">
+      {eyebrow && (
+        <span className="mb-3 block text-sm font-semibold uppercase tracking-widest text-violet-500">
+          {eyebrow}
+        </span>
+      )}
+
+      <h2 className="text-white">
+        {title}
+      </h2>
+
+      {description && (
+        <p className="mt-4 text-slate-400">
+          {description}
+        </p>
+      )}
+
+      {children}
+    </div>
+  )
+}
+
+export default SectionTitle
+</file>
+
+<file path="src/components/layout/PageSection.tsx">
+import type { ComponentPropsWithoutRef } from "react"
+
+interface PageSectionProps extends ComponentPropsWithoutRef<"section"> {
+  children: React.ReactNode
+}
+
+function PageSection({
+  children,
+  className = "",
+  ...props
+}: PageSectionProps) {
+  return (
+    <section
+      className={`py-24 ${className}`}
+      {...props}
+    >
+      {children}
+    </section>
+  )
+}
+
+export default PageSection
+</file>
+
+<file path="src/data/schedule.ts">
+import type { Schedule } from "../types/schedule"
+
+export const schedule: Schedule[] = [
+  {
+    id: "lunes",
+    day: "Lunes",
+    opening_time: "07:00",
+    closing_time: "22:00",
+    trainer: "Vitarelli Leonardo",
+    acivitty: "Krav maga",
+    time: "18 a 20",
+  },
+  {
+    id: "martes",
+    day: "Martes",
+    opening_time: "07:00",
+    closing_time: "22:00",
+    trainer: "Torres Maria Laura",
+    acivitty: "Yoga",
+    time: "18 a 19",
+  },
+  {
+    id: "miercoles",
+    day: "Miércoles",
+    opening_time: "07:00",
+    closing_time: "22:00",
+    trainer: "Vitarelli Leonardo",
+    acivitty: "Krav maga",
+    time: "18 a 20",
+  },
+  {
+    id: "jueves",
+    day: "Jueves",
+    opening_time: "07:00",
+    closing_time: "22:00",
+    trainer: "Torres Maria Laura",
+    acivitty: "Yoga",
+    time: "18 a 19",
+  },
+  {
+    id: "viernes",
+    day: "Viernes",
+    opening_time: "07:00",
+    closing_time: "22:00",
+    trainer: "Vitarelli Leonardo",
+    acivitty: "Krav maga",
+    time: "18 a 20",
+  },
+  {
+    id: "sabado",
+    day: "Sábado",
+    opening_time: "11:00",
+    closing_time: "12:00",
+    trainer: "Torres Maria Laura",
+    acivitty: "Yoga",
+    time: "11 a 12",
+  },
+  {
+    id: "domingo",
+    day: "Domingo",
+    opening_time: "",
+    closing_time: "",
+    time: "Cerrado",
+  },
+]
+</file>
+
+<file path="src/data/services.ts">
+import type { Service } from "../types/service";
+
+export const services: Service[] = [
+  {
+    id: "musculacion",
+    name: "Musculación",
+    description:
+      "Entrenamiento de fuerza para desarrollar masa muscular y mejorar tu rendimiento.",
+    icon: "Dumbbell",
+  },
+  {
+    id: "cardio",
+    name: "Cardio",
+    description:
+      "Entrenamientos cardiovasculares para mejorar tu resistencia y condición física.",
+    icon: "HeartPulse",
+  },
+  {
+    id: "entrenamiento-funcional",
+    name: "Entrenamiento funcional",
+    description:
+      "Ejercicios dinámicos para mejorar fuerza, movilidad, coordinación y rendimiento.",
+    icon: "Activity",
+  },
+  {
+    id: "entrenamiento-personal",
+    name: "Entrenamiento personal",
+    description:
+      "Planes personalizados y seguimiento individual para alcanzar tus objetivos de entrenamiento.",
+    icon: "PersonStanding",
+  },
+  {
+    id: "clases-grupales",
+    name: "Clases grupales",
+    description:
+      "Sesiones dinámicas para entrenar acompañado, mantener la motivación y disfrutar del ejercicio.",
+    icon: "Zap",
+  },
+  {
+    id: "movilidad-flexibilidad",
+    name: "Movilidad y flexibilidad",
+    description:
+      "Ejercicios enfocados en mejorar tu movilidad, flexibilidad y calidad de movimiento.",
+    icon: "Target",
+  },
+];
+</file>
+
+<file path="src/types/plan.ts">
+export interface Plan {
+    id: string
+    name: string
+    price: number
+    // Lista de beneficios de este plan.
+    features: string[]
+    // Lo usamos para destacar un plan..
+    highlighted: boolean
+    description?: string
+}
+</file>
+
+<file path="src/types/schedule.ts">
+export interface Schedule {
+  id: string
+  day: string
+  opening_time: string
+  closing_time: string
+  trainer?: string
+  acivitty?: string
+  time: string
+}
+
+// Representamos los dias y horarios del gimnacio.
+</file>
+
+<file path="src/types/testimonial.ts">
+export interface Testimonial {
+    id: string
+    name: string
+    text: string
+    rating: number
+    image: string
+    comment?: string
+}
+</file>
+
+<file path="src/types/trainer.ts">
+export interface Trainer {
+    id: string
+    name: string
+    specialty: string
+    image: string
+    bio: string
+    speciality?: string
+}
+</file>
+
+<file path="vite.config.ts">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+})
+</file>
+
+<file path="src/components/layout/Header.tsx">
+import { useState } from "react"
+
+import Container from "../common/Container"
+
+import Button from "../common/Button"
+
+function Header() {
+  const [menu_open, set_menu_open] = useState(false)
+
+  const close_menu = () => {
+    set_menu_open(false)
+  }
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/95 backdrop-blur">
+      <Container>
+        <div className="flex h-20 items-center justify-between">
+          <a
+            href="#inicio"
+            className="text-xl font-bold tracking-tight text-white"
+            onClick={close_menu}
+          >
+            IRON<span className="text-violet-500">PULSE</span>
+          </a>
+
+          <nav className="hidden items-center gap-8 md:flex">
+            <a
+              href="#servicios"
+              className="text-sm text-slate-300 transition-colors hover:text-white"
+            >
+              Servicios
+            </a>
+
+            <a
+              href="#planes"
+              className="text-sm text-slate-300 transition-colors hover:text-white"
+            >
+              Planes
+            </a>
+
+            <a
+              href="#entrenadores"
+              className="text-sm text-slate-300 transition-colors hover:text-white"
+            >
+              Entrenadores
+            </a>
+
+            <a
+              href="#horarios"
+              className="text-sm text-slate-300 transition-colors hover:text-white"
+            >
+              Horarios
+            </a>
+
+            <Button href="#planes">Comenzar ahora</Button>
+          </nav>
+
+          <button
+            type="button"
+            className="rounded-md border border-slate-700 px-3 py-2 text-sm text-white md:hidden"
+            onClick={() => set_menu_open(!menu_open)}
+            aria-label={menu_open ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={menu_open}
+          >
+            {menu_open ? "Cerrar" : "Menú"}
+          </button>
+        </div>
+
+        {menu_open && (
+          <nav className="border-t border-slate-800 py-4 md:hidden">
+            <div className="flex flex-col gap-4">
+              <a
+                href="#servicios"
+                className="text-sm text-slate-300 hover:text-white"
+                onClick={close_menu}
+              >
+                Servicios
+              </a>
+
+              <a
+                href="#planes"
+                className="text-sm text-slate-300 hover:text-white"
+                onClick={close_menu}
+              >
+                Planes
+              </a>
+
+              <a
+                href="#entrenadores"
+                className="text-sm text-slate-300 hover:text-white"
+                onClick={close_menu}
+              >
+                Entrenadores
+              </a>
+
+              <a
+                href="#horarios"
+                className="text-sm text-slate-300 hover:text-white"
+                onClick={close_menu}
+              >
+                Horarios
+              </a>
+
+              <Button href="#planes">Comenzar ahora</Button>
+            </div>
+          </nav>
+        )}
+      </Container>
+    </header>
+  )
+}
+
+export default Header
+</file>
+
+<file path="src/components/sections/Hero.tsx">
+import { motion } from "framer-motion";
+
+import Container from "../common/Container";
+
+import PageSection from "../layout/PageSection";
+
+import Button from "../common/Button";
+
+function Hero() {
+  return (
+    <PageSection className="relative flex min-h-[calc(100vh-5rem)] items-center overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url(https://images.unsplash.com/photo-1778828494365-c798ff9cce2c?auto=format&fit=crop&fm=jpg&q=80&w=2000)",
+        }}
+      />
+
+      <div className="absolute inset-0 bg-slate-950/75" />
+
+      <Container>
+        <motion.div
+          id="inicio"
+          className="relative max-w-4xl scroll-mt-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          <span className="mb-4 block text-sm font-semibold uppercase tracking-[0.2em] text-violet-500">
+            Entrenamiento de alto rendimiento
+          </span>
+
+          <h1 className="max-w-4xl text-white">
+            Entrená más fuerte.
+            <span className="block text-violet-500">Viví mejor.</span>
+          </h1>
+
+          <p className="mt-6 max-w-2xl text-lg text-slate-300">
+            Transformá tu entrenamiento con un espacio diseñado para ayudarte a
+            superar tus límites y alcanzar tus objetivos.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Button href="#planes">Comenzar ahora</Button>
+
+            <Button
+              variant="secondary"
+              onClick={() =>
+                document
+                  .getElementById("servicios")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              Conocer más
+            </Button>
+          </div>
+        </motion.div>
+      </Container>
+    </PageSection>
+  );
+}
+
+export default Hero;
+</file>
+
+<file path="src/index.css">
+@import "tailwindcss";
+
+:root {
+  --color-background: #020617;
+  --color-surface: #0f172a;
+  --color-surface-light: #1e293b;
+  --color-primary: #7c3aed;
+  --color-primary-hover: #8b5cf6;
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+  --color-border: #334155;
+
+  --font-family-base: Inter, system-ui, sans-serif;
+
+  --spacing-section: 6rem;
+  --spacing-container: 1.5rem;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {
+  line-height: 1.6;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/*
+    Si en un futuro queremos cambiar algo de los colores, espacios, tamaños o
+    tipos de letras tenemos que modificar esto nada mas.
+*/
+</file>
+
+<file path="src/components/sections/Service.tsx">
+import {
+  Activity,
+  Dumbbell,
+  HeartPulse,
+  PersonStanding,
+  Target,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
+import Container from "../common/Container";
+import SectionTitle from "../common/SectionTitle";
+import PageSection from "../layout/PageSection";
+import ServiceCard from "../common/ServiceCard";
+import { services } from "../../data/services";
+
+const service_icons: Record<string, LucideIcon> = {
+  Dumbbell,
+  Activity,
+  HeartPulse,
+  PersonStanding,
+  Target,
+  Zap,
+};
+
+function Services() {
+  return (
+    <PageSection id="servicios">
+      <Container>
+        <SectionTitle
+          eyebrow="Nuestros servicios"
+          title="Todo lo que necesitás para entrenar mejor"
+          description="Encontrá diferentes opciones de entrenamiento diseñadas para acompañarte en cada etapa de tu progreso."
+        />
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, index) => {
+            const Icon = service_icons[service.icon] ?? Dumbbell;
+
+            return (
+              <ServiceCard
+                key={service.id}
+                name={service.name}
+                description={service.description}
+                Icon={Icon}
+                index={index}
+              />
+            );
+          })}
+        </div>
+      </Container>
+    </PageSection>
+  );
+}
+
+export default Services;
+</file>
+
+<file path="src/App.tsx">
+import Header from "./components/layout/Header";
+import Hero from "./components/sections/Hero";
+import Services from "./components/sections/Service";
+import Plans from "./components/sections/Plans";
+import Trainers from "./components/sections/Trainers";
+import Testimonials from "./components/sections/Testimonials";
+import Schedule from "./components/sections/Schedule";
+import Footer from "./components/layout/Footer";
+import Stats from "./components/sections/Stats";
+import About from "./components/sections/About"
+
+function App() {
+  return (
+    <>
+      <Header />
+
+      <main>
+        <Hero />
+        <Stats />
+        <About />
+        <Services />
+        <Plans />
+        <Trainers />
+        <Testimonials />
+        <Schedule />
+      </main>
+
+      <Footer />
+    </>
+  );
+}
+
+export default App;
+</file>
+
+</files>

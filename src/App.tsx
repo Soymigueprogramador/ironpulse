@@ -6,6 +6,8 @@ import Trainers from "./components/sections/Trainers";
 import Testimonials from "./components/sections/Testimonials";
 import Schedule from "./components/sections/Schedule";
 import Footer from "./components/layout/Footer";
+import Stats from "./components/sections/Stats";
+import About from "./components/sections/About"
 
 function App() {
   return (
@@ -14,13 +16,15 @@ function App() {
 
       <main>
         <Hero />
+        <Stats />
+        <About />
         <Services />
         <Plans />
         <Trainers />
         <Testimonials />
         <Schedule />
       </main>
-      
+
       <Footer />
     </>
   );
