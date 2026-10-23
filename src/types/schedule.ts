@@ -4,7 +4,7 @@ export interface Schedule {
   opening_time: string
   closing_time: string
   trainer?: string
-  acivitty?: string
+  activity?: string
   time: string
 }
 
