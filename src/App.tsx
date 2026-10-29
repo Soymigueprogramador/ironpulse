@@ -8,6 +8,7 @@ import Schedule from "./components/sections/Schedule";
 import Footer from "./components/layout/Footer";
 import Stats from "./components/sections/Stats";
 import About from "./components/sections/About"
+import Contact from "./components/sections/Contact";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Trainers />
         <Testimonials />
         <Schedule />
+        <Contact />
       </main>
 
       <Footer />
