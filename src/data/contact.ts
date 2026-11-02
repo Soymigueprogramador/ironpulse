@@ -1,3 +1,5 @@
 export const contact = {
-  whatsappNumber: "5491126644514",
+  whatsappNumber: "12345678904",
+  phoneDisplay: "+54 1234567890",
+  email: "contacto@ironpulse.com",
 };

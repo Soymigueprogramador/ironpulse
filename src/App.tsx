@@ -8,6 +8,7 @@ import Schedule from "./components/sections/Schedule";
 import Footer from "./components/layout/Footer";
 import Stats from "./components/sections/Stats";
 import About from "./components/sections/About"
+import Location from "./components/sections/Location";
 import Contact from "./components/sections/Contact";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Trainers />
         <Testimonials />
         <Schedule />
+        <Location />
         <Contact />
       </main>
 

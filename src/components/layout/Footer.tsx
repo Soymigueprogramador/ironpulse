@@ -1,4 +1,5 @@
-import Container from "../common/Container"
+import Container from "../common/Container";
+import { contact } from "../../data/contact";
 
 function Footer() {
   return (
@@ -62,8 +63,18 @@ function Footer() {
 
             <div className="mt-4 flex flex-col gap-3 text-sm text-slate-400">
               <span>Buenos Aires, Argentina</span>
-              <span>+54 11 1234-5678</span>
-              <span>contacto@ironpulse.com</span>
+              <a
+                href={`tel:${contact.whatsappNumber}`}
+                className="transition-colors hover:text-white"
+              >
+                {contact.phoneDisplay}
+              </a>
+              <a
+                href={`mailto:${contact.email}`}
+                className="transition-colors hover:text-white"
+              >
+                {contact.email}
+              </a>
             </div>
           </div>
         </div>
@@ -76,7 +87,7 @@ function Footer() {
         </div>
       </Container>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
