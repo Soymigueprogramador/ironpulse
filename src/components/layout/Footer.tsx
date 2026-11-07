@@ -27,59 +27,35 @@ function Footer() {
             </h3>
 
             <nav className="mt-4 flex flex-col gap-3">
-              <a
-                href="#nosotros"
-                className="text-sm text-slate-400 transition-colors hover:text-white"
-              >
+              <a href="#nosotros" className="text-sm text-slate-400 transition-colors hover:text-white">
                 Nosotros
               </a>
 
-              <a
-                href="#servicios"
-                className="text-sm text-slate-400 transition-colors hover:text-white"
-              >
+              <a href="#servicios" className="text-sm text-slate-400 transition-colors hover:text-white">
                 Servicios
               </a>
 
-              <a
-                href="#planes"
-                className="text-sm text-slate-400 transition-colors hover:text-white"
-              >
+              <a href="#planes" className="text-sm text-slate-400 transition-colors hover:text-white">
                 Planes
               </a>
 
-              <a
-                href="#entrenadores"
-                className="text-sm text-slate-400 transition-colors hover:text-white"
-              >
+              <a href="#entrenadores" className="text-sm text-slate-400 transition-colors hover:text-white">
                 Entrenadores
               </a>
 
-              <a
-                href="#horarios"
-                className="text-sm text-slate-400 transition-colors hover:text-white"
-              >
+              <a href="#horarios" className="text-sm text-slate-400 transition-colors hover:text-white">
                 Horarios
               </a>
 
-              <a
-                href="#testimonios"
-                className="text-sm text-slate-400 transition-colors hover:text-white"
-              >
+              <a href="#testimonios" className="text-sm text-slate-400 transition-colors hover:text-white">
                 Testimonios
               </a>
 
-              <a
-                href="#ubicacion"
-                className="text-sm text-slate-400 transition-colors hover:text-white"
-              >
+              <a href="#ubicacion" className="text-sm text-slate-400 transition-colors hover:text-white">
                 Ubicación
               </a>
 
-              <a
-                href="#contacto"
-                className="text-sm text-slate-400 transition-colors hover:text-white"
-              >
+              <a href="#contacto" className="text-sm text-slate-400 transition-colors hover:text-white">
                 Contacto
               </a>
             </nav>
@@ -129,11 +105,21 @@ function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 py-6">
-          <p className="text-center text-sm text-slate-500">
+        <div className="flex flex-col items-center justify-between gap-3 border-t border-slate-800 py-6 text-center sm:flex-row">
+          <p className="text-sm text-slate-500">
             © {new Date().getFullYear()} IRONPULSE. Todos los derechos
             reservados.
           </p>
+
+          <a
+            href="https://nuevo-portfolio.onrender.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-slate-500 transition-colors hover:text-violet-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          >
+            Conocé al desarrollador
+            <span className="ml-1 text-violet-500">↗</span>
+          </a>
         </div>
       </Container>
     </footer>
