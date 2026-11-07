@@ -1,7 +1,5 @@
 import { useState } from "react"
-
 import Container from "../common/Container"
-
 import Button from "../common/Button"
 
 function Header() {
@@ -10,6 +8,17 @@ function Header() {
   const close_menu = () => {
     set_menu_open(false)
   }
+
+  const navigation_links = [
+    { label: "Nosotros", href: "#nosotros" },
+    { label: "Servicios", href: "#servicios" },
+    { label: "Planes", href: "#planes" },
+    { label: "Entrenadores", href: "#entrenadores" },
+    { label: "Horarios", href: "#horarios" },
+    { label: "Testimonios", href: "#testimonios" },
+    { label: "Ubicación", href: "#ubicacion" },
+    { label: "Contacto", href: "#contacto" },
+  ]
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/95 backdrop-blur">
@@ -23,41 +32,23 @@ function Header() {
             IRON<span className="text-violet-500">PULSE</span>
           </a>
 
-          <nav className="hidden items-center gap-8 md:flex">
-            <a
-              href="#servicios"
-              className="text-sm text-slate-300 transition-colors hover:text-white"
-            >
-              Servicios
-            </a>
-
-            <a
-              href="#planes"
-              className="text-sm text-slate-300 transition-colors hover:text-white"
-            >
-              Planes
-            </a>
-
-            <a
-              href="#entrenadores"
-              className="text-sm text-slate-300 transition-colors hover:text-white"
-            >
-              Entrenadores
-            </a>
-
-            <a
-              href="#horarios"
-              className="text-sm text-slate-300 transition-colors hover:text-white"
-            >
-              Horarios
-            </a>
+          <nav className="hidden items-center gap-5 xl:flex">
+            {navigation_links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-slate-300 transition-colors hover:text-white"
+              >
+                {link.label}
+              </a>
+            ))}
 
             <Button href="#planes">Comenzar ahora</Button>
           </nav>
 
           <button
             type="button"
-            className="rounded-md border border-slate-700 px-3 py-2 text-sm text-white md:hidden"
+            className="rounded-md border border-slate-700 px-3 py-2 text-sm text-white xl:hidden"
             onClick={() => set_menu_open(!menu_open)}
             aria-label={menu_open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={menu_open}
@@ -67,39 +58,18 @@ function Header() {
         </div>
 
         {menu_open && (
-          <nav className="border-t border-slate-800 py-4 md:hidden">
+          <nav className="border-t border-slate-800 py-4 xl:hidden">
             <div className="flex flex-col gap-4">
-              <a
-                href="#servicios"
-                className="text-sm text-slate-300 hover:text-white"
-                onClick={close_menu}
-              >
-                Servicios
-              </a>
-
-              <a
-                href="#planes"
-                className="text-sm text-slate-300 hover:text-white"
-                onClick={close_menu}
-              >
-                Planes
-              </a>
-
-              <a
-                href="#entrenadores"
-                className="text-sm text-slate-300 hover:text-white"
-                onClick={close_menu}
-              >
-                Entrenadores
-              </a>
-
-              <a
-                href="#horarios"
-                className="text-sm text-slate-300 hover:text-white"
-                onClick={close_menu}
-              >
-                Horarios
-              </a>
+              {navigation_links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-slate-300 transition-colors hover:text-white"
+                  onClick={close_menu}
+                >
+                  {link.label}
+                </a>
+              ))}
 
               <Button href="#planes">Comenzar ahora</Button>
             </div>

@@ -45,7 +45,7 @@ function Location() {
             </div>
 
             <p className="text-lg font-semibold leading-relaxed text-slate-200">
-              Av. Corrientes 1234
+              {contact.address}
             </p>
 
             <p className="mt-2 text-sm text-slate-400">
